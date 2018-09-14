@@ -1,0 +1,50 @@
+{
+  "name": "node-daemon",
+  "version": "0.0.1",
+  "description": "Boilerplate for node-daemon projects",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --inspect --exec babel-node --extensions '.ts,.js' ./src -- --debug",
+    "start": "npm run build; node ./dist/index.js",
+    "build": "babel --extensions '.ts,.js' ./src --source-maps-inline -d ./dist",
+    "test": "eslint ./src"
+  },
+  "keywords": [
+    "toon",
+    "qube",
+    "eneco"
+  ],
+  "author": "Ivo Toby",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "babel-eslint": "^9.0.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "node-fetch": "^2.2.0",
+    "yargs": "^12.0.1"
+  }
+}
