@@ -1,7 +1,7 @@
 /**
  * Small utility to handle config values.
  * This class can be considered a singleton.
- * You can get either locally stored,  cli-arguments or environment values by using the getItem() method
+ * You can get either locally stored,  cli-arguments or environment values by using the get() method
  * Setting a locally stored value can be done using setItem.
  *
  * Values in this class are immutable! Once set you can not reset :)
@@ -33,7 +33,7 @@ class Config {
      * 3. environment variables
      * @param {string} key
      */
-    getItem(key) {
+    get(key) {
         // Order;
         // 1. local value (set in setItem);
         // 2. value from arguments
@@ -55,7 +55,7 @@ class Config {
      * @param {string} key
      * @param {*} value
      */
-    setItem(key, value) {
+    set(key, value) {
         if (this.isMutable(key)) {
             this.#data[key] = value;
         }

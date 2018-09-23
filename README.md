@@ -38,7 +38,7 @@ Please note; values are mutable by default! If you want the singleton to maintai
 ```
 import Config from './lib/classes/Config';
 
-const someValue = Config().getItem("someArg"); // someArg is an CLI-argument, but can be ENV-var or instance var
+const someValue = Config().get("someArg"); // someArg is an CLI-argument, but can be ENV-var or instance var
 
 ```
 
@@ -47,9 +47,9 @@ const someValue = Config().getItem("someArg"); // someArg is an CLI-argument, bu
 ```
 import Config from './lib/classes/Config';
 
-Config().setItem("someArg", "someValue"); 
+Config().set("someArg", "someValue"); 
 
-console.log(Config().getItem('someArg')); 
+console.log(Config().get('someArg')); 
 // should produce "someValue"
 
 ```
@@ -61,12 +61,12 @@ When started like this ` npm run start -- --someArg valueFromCli `
 ```
 import Config from './lib/classes/Config';
 
-console.log(Config().getItem('someArg')); 
+console.log(Config().get('someArg')); 
 // should produce "valueFromCli"
 
-Config().setItem("someArg", "someValue"); 
+Config().set("someArg", "someValue"); 
 
-console.log(Config().getItem('someArg')); 
+console.log(Config().get('someArg')); 
 // should now produce "someValue"
 
 ```
@@ -79,12 +79,12 @@ You can protect values by setting the immutable boolean the first time you call 
 import Config from './lib/classes/Config';
 Config(true);
 
-console.log(Config().getItem('someArg'));  // NOTE the boolean
+console.log(Config().get('someArg'));  // NOTE the boolean
 // should produce "valueFromCli"
 
-Config().setItem("someArg", "someValue"); 
+Config().set("someArg", "someValue"); 
 
-console.log(Config().getItem('someArg')); 
+console.log(Config().get('someArg')); 
 // should throw an error
 
 ```
