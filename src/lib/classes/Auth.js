@@ -21,25 +21,19 @@ class Auth {
         }
     }
 
-    static async updateToken() {
+    static async logout() {
         const db = new Persistent('Auth');
-        const currentAuth = db.get('authData');
 
-        const results = await GoodWePost(
-            'Auth/UpdateToken',
-            {
-                language: 'en',
-                timestamp: currentAuth.timestamp,
-                uid: currentAuth.uid,
-                client: Config().get('GOODWE_CLIENT_TYPE'),
-                token: currentAuth.token,
-                version: Config().get('GOODWE_API_VERION'),
-            },
-        );
-        db.set('authData', results);
-        return results;
+        if (!db.get('authData').token) {
+            GoodWeLogger.log('No token available, I\'m not logged in!');
+        } else {
+            // login to API and get a Token
+            const results = await GoodWePost('Auth/RemoveToken', {});
+            console.log(results);
+            // db.set('authData', null);
+            GoodWeLogger.log('Logged out');
+        }
     }
-
     static get token() {
         const db = new Persistent('Auth');
         return db.get('authData').token;

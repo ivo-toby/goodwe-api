@@ -4,6 +4,29 @@ import GoodWeError from './GoodWeError';
 import Persistent from './Persistent';
 
 // Private
+async function updateToken(apiURL) {
+    const db = new Persistent('Auth');
+    const currentAuth = db.get('authData');
+    try {
+        let result = await fetch(`${apiURL}/Auth/UpdateToken`, {
+            method: 'POST',
+            body: JSON.stringify({
+                language: 'en',
+                timestamp: currentAuth.timestamp,
+                uid: currentAuth.uid,
+                client: Config().get('GOODWE_CLIENT_TYPE'),
+                token: currentAuth.token,
+                version: Config().get('GOODWE_API_VERION'),
+            }),
+        });
+        result = await result.json();
+        db.set('authData', result);
+        return result;
+    }catch (e) {
+        return new GoodWeError(e);
+    }
+}
+
 //                Token: `{'version':'${config.get('GOODWE_API_VERION')}','client':'${config.get('GOODWE_CLIENT_TYPE')}','language':'en'}`,
 async function _GoodWePost(apiURL, method, params, customHeaders) {
     let result;
@@ -28,13 +51,14 @@ async function _GoodWePost(apiURL, method, params, customHeaders) {
             headers,
         });
         result = await result.json();
-        // if (result.msg === 'No access, please login.') {
-        //     // update the token!
 
-        //     // await Auth.updateToken();
-        //     // const newResult = await _GoodWePost(apiURL, method, params, headers);
-        //     // return newResult;
-        // }
+        if (result.code === 100002) {
+            // update the token!
+
+            await updateToken(apiURL);
+            const newResult = await _GoodWePost(apiURL, method, params, headers);
+            return newResult;
+        }
         if (!result || (result.data === null) || result.hasError) {
             // API returned an error!
             throw new GoodWeError({
@@ -83,7 +107,7 @@ async function GoodWePost(method, params, headers) {
     try {
         result = _GoodWePost(apiURL, method, params, headers);
     } catch (e) {
-        console.error(e);
+        return new GoodWeError(e);
     }
     return result;
 }
@@ -95,7 +119,7 @@ async function AuthenticatedGoodWePost(method, params) {
     try {
         result = _GoodWePost(apiURL, method, params);
     } catch (e) {
-        console.log(e);
+        return new GoodWeError(e);
     }
     return result;
 }

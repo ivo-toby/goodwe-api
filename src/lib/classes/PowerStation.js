@@ -9,7 +9,7 @@ class PowerStation {
     static async getPowerstationPac(stationId, dateObj) {
         const params = {
             id: stationId,
-            date: dateObj.toISOString().substr(0, 10),
+            date: dateObj.toISOString(),
         };
         const results = await AuthenticatedGoodWePost('PowerStationMonitor/GetPowerStationPacByDayForApp', params);
         return results;
@@ -27,6 +27,13 @@ class PowerStation {
         const today = new Date();
         const output = await PowerStation.getPowerstationPac(stationId, today);
         console.log(output);
+        const formattedOutput = {
+            total: output.today_power,
+            // last item always has pac:0.. second last has actual value
+            lastOutput: output.pacs[output.pacs.length - 2].pac,
+            dateLastOutput: output.pacs[output.pacs.length - 2].date,
+        }
+        console.log(formattedOutput);
     }
 
 }
