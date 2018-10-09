@@ -47,7 +47,7 @@ class Config {
         if (process.env[key]) {
             return process.env[key];
         }
-        return '';
+        return null;
     }
 
     /**
@@ -59,6 +59,19 @@ class Config {
         if (this.isMutable(key)) {
             this.#data[key] = value;
         }
+    }
+
+    hasKey(key) {
+        if (
+            (Object.keys(this.#data).indexOf(key) > -1)
+            ||
+            (Object.keys(argv).indexOf(key) > -1)
+            ||
+            (Object.keys(process.env).indexOf(key) > -1)
+        ) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -82,16 +95,15 @@ class Config {
             throw new Error(errorMessage);
         }
 
-        if (argv[key]!==null) {
+        if (argv[key] !== null) {
             throw new Error(errorMessage);
         }
 
-        if (process.env!==null) {
+        if (process.env !== null) {
             throw new Error(errorMessage);
         }
         return true;
     }
-
 }
 
 export default Config.getInstance;
