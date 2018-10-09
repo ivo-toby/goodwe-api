@@ -6,4 +6,4 @@ class GoodWeLogger {
     }
 }
 
-module.exports = GoodWeLogger;
+export default GoodWeLogger;

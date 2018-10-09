@@ -8,4 +8,4 @@ class GoodWeError extends Error {
     }
 }
 
-module.exports = GoodWeError;
+export default GoodWeError;

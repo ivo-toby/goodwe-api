@@ -124,7 +124,7 @@ async function AuthenticatedGoodWePost(method, params) {
     return result;
 }
 
-module.exports = {
+export {
     GoodWeGet,
     GoodWePost,
     GoodWeLogin,

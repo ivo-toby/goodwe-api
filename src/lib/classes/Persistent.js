@@ -38,4 +38,4 @@ class Persistent {
     }
 }
 
-module.exports = Persistent;
+export default Persistent;
