@@ -1,6 +1,6 @@
 {
   "name": "goodwe-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Goodwe API fetch to PVOutput",
   "main": "index.js",
   "scripts": {
