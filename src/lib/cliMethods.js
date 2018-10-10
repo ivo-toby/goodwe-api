@@ -24,8 +24,12 @@ async function syncTargets() {
 
     const powerOutput = await PowerStation.getPowerstationPac(stationId, new Date());
     factory.powerData = powerOutput;
-    const results = await factory.syncTargets();
-    return results;
+    try {
+        const results = await factory.syncTargets();
+        return results;
+    } catch (e) {
+        throw new GoodWeError(e);
+    }
 }
 
 async function printPowerstationList() {

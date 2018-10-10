@@ -21,24 +21,27 @@ class PVOutput extends AbstractTarget {
             const time = `${timestamp.getHours()}:${timestamp.getMinutes()}`;
 
             const solarWatt = this.latest;
-            // const solarWattHour = this.total * 1;
+            const solarWattHour = this.total * 1000;
 
             const params = {
                 key: Config().get('PVapiKey'),
                 sid: Config().get('PVSystemId'),
                 d: date,
                 t: time,
-                v1: solarWatt,
-                // v2: solarWattHour,
+                v1: solarWattHour,
+                v2: solarWatt,
             };
-            console.log(params);
             const uri = `http://pvoutput.org/service/r2/addstatus.jsp?${querystring.stringify(params)}`;
-            console.log(uri);
             let result = await fetch(uri, {
                 method: 'GET',
             });
             result = await result;
-            resolve(result);
+            console.log(result.status);
+            if (result.status === 200) {
+                resolve(result);
+            } else {
+                reject(result);
+            }
         });
     }
 }
