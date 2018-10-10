@@ -18,5 +18,22 @@ GOODWE_PASSWORD=<your goodwe-password>
 ```
 
 ## CLI args
-`--list-powerstations` prints a list of powerstations connected to your account
-`--get-last-output` prints the last PAC value, expects the station-id in --station-id <station-id> *unfinished*
+```--list-powerstations``` prints a list of powerstations connected to your account
+
+```--get-last-output``` prints the last PAC value, expects the station-id in --station-id <station-id> *unfinished*
+
+```--sync [target]``` syncs output to targets (comma-separated). Currently only one target is supported (which is PVOutput.org). Each target has a set of configuration options which are checked before executing the sync.
+
+```--dry-run``` uses mock data instead of real data and does not post to targets
+
+## Targets
+
+This tool is written to allow syncing of GoodWe-API-data to multiple targets. Currently PVOutput is the only target which is supported. Possibly more to come in the future:)
+
+### PVOutput
+
+Configuration options;
+
+```--PVapiKey [key]``` the PVOutput API Key
+
+```--PVSystemId [systemId]``` the PVOUtput systemID
