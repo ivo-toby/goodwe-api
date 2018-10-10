@@ -1,6 +1,6 @@
 {
   "name": "goodwe-api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Goodwe API fetch to PVOutput",
   "main": "index.js",
   "scripts": {
@@ -10,11 +10,11 @@
     "test": "eslint ./src"
   },
   "keywords": [
-    "toon",
-    "qube",
-    "eneco"
+    "goodwe",
+    "PVOutput",
+    "SEMS"
   ],
-  "author": "Ivo Toby",
+  "author": "Ivo Toby - ivo.toby@gmail.com",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
