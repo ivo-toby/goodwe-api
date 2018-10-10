@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --inspect --exec babel-node --extensions '.ts,.js' ./src -- --debug --keepalive",
     "start": "npm run build; node ./dist/index.js",
-    "build": "babel --extensions '.ts,.js' ./src --source-maps-inline -d ./dist",
+    "build": "babel-node --extensions '.ts,.js' ./src --source-maps-inline -d ./dist",
     "test": "eslint ./src"
   },
   "keywords": [
