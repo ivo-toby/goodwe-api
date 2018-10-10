@@ -37,3 +37,18 @@ Configuration options;
 ```--PVapiKey [key]``` the PVOutput API Key
 
 ```--PVSystemId [systemId]``` the PVOUtput systemID
+
+
+# Changelog
+
+`v0.1.0` 
+
+First draft-release. Should be able to sync if you set a cronjob to execute every x minutes, but still very alpha!
+
+- Login flow SEMS GoodWe-API
+- Retrieve list of powerstations from SEMS/GoodWe
+- Retrieve PAC (output) of single powerstation from SEMS/GoodWe
+- Post values to PVOutput.org
+
+# Known issues
+See [GitHub](https://github.com/buttonfreak/goodwe-api/issues)
