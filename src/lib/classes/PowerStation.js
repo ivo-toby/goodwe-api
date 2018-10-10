@@ -1,3 +1,4 @@
+import Config from './Config';
 import { AuthenticatedGoodWePost } from './GoodWeFetch';
 
 class PowerStation {
@@ -7,6 +8,11 @@ class PowerStation {
     }
 
     static async getPowerstationPac(stationId, dateObj) {
+        if (Config().get('dry-run')) {
+            const output = await import('../../../test/mock.json');
+            return output;
+        }
+
         const params = {
             id: stationId,
             date: dateObj.toISOString(),
