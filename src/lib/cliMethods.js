@@ -13,20 +13,29 @@ async function syncTargets() {
 
     const factory = new TargetFactory();
     const outputModules = Config().get('sync').toString().split(',');
-    await factory.loadTargets(outputModules);
+    const loaded = await factory.loadTargets(outputModules);
 
-    const powerOutput = await PowerStation.getPowerstationPac(stationId, new Date());
-    factory.powerData = powerOutput;
-    try {
-        const results = await factory.syncTargets();
-        return results;
-    } catch (e) {
-        throw new GoodWeError(e);
+    if (loaded) {
+        const powerOutput = await PowerStation.getPowerstationPac(stationId, new Date());
+        factory.powerData = powerOutput;
+        try {
+            await factory.syncTargets();
+            return true;
+        } catch (e) {
+            throw new GoodWeError(e);
+        }
+    } else {
+        return false;
     }
 }
 
 async function printPowerstationList() {
-    const stationsList = await PowerStation.getPowerStations();
+    let stationsList = [];
+    try {
+        stationsList = await PowerStation.getPowerStations();
+    } catch (e) {
+        throw new GoodWeError(e);
+    }
     GoodWeLogger.log(chalk.red.bold('Found the following powerstations (name, location, powerstation-id):'));
     stationsList.forEach((station) => {
         GoodWeLogger.log(chalk.green.bold(station.stationname, station.location, station.powerstation_id));
@@ -34,18 +43,20 @@ async function printPowerstationList() {
 }
 
 async function printLastOutput(stationId) {
+    let output = {};
     if (!stationId) {
         throw new GoodWeError({ message: 'no station id' });
     }
     const today = new Date();
-    const output = await PowerStation.getPowerstationPac(stationId, today);
-    const formattedOutput = {
-        total: output.today_power,
-        // last item always has pac:0.. second last has actual value
-        lastOutput: output.pacs[output.pacs.length - 2].pac,
-        dateLastOutput: output.pacs[output.pacs.length - 2].date,
-    };
-    GoodWeLogger.log(formattedOutput);
+    try {
+        output = await PowerStation.getPowerstationPac(stationId, today);
+    } catch (e) {
+        throw new GoodWeError(e);
+    }
+
+    GoodWeLogger.log(`Reported at : ${output.pacs[output.pacs.length - 2].date}`);
+    GoodWeLogger.log(`Total today : ${chalk.green.bold(output.today_power)} kwh`);
+    GoodWeLogger.log(`Last reported : ${chalk.green.bold(output.pacs[output.pacs.length - 2].pac)} watt`);
 }
 
 export {

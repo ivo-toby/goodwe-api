@@ -11,8 +11,10 @@ class TargetFactory {
         });
         const mods = await Promise.all(objects);
         this.targets = mods.map(module => new module.default()); // eslint-disable-line
-        this.validateTargets();
-        return this.modules;
+        if (this.validateTargets()) {
+            return true;
+        }
+        return false;
     }
 
     validateTargets() {

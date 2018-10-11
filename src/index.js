@@ -25,7 +25,9 @@ if (Config().get('get-last-output')) {
 
 if (Config().get('sync')) {
     syncTargets().then((result) => {
-        GoodWeLogger.log(chalk.bgGreen.black.bold('Syncing succeeded'));
+        if (result) {
+            GoodWeLogger.log(chalk.bgGreen.black.bold('Syncing succeeded'));
+        }
     }).catch((e) => {
         throw new GoodWeError(e);
     });

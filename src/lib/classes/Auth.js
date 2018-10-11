@@ -41,6 +41,7 @@ class Auth {
             GoodWeLogger.log('Logged out');
         }
     }
+
     static get token() {
         const db = new Persistent('Auth');
         return db.get('authData').token;
