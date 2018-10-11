@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --inspect --exec babel-node --extensions '.ts,.js' ./src -- --debug --keepalive",
     "start": "npm run build; node ./dist/index.js",
-    "build": "babel-node --extensions '.ts,.js' ./src --source-maps-inline -d ./dist",
+    "build": "babel --extensions '.ts,.js' ./src --source-maps-inline -d ./dist",
     "test": "eslint ./src"
   },
   "keywords": [
@@ -32,9 +32,11 @@
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
     "@babel/preset-typescript": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "babel-eslint": "^9.0.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "eslint-config-airbnb": "^17.1.0",
