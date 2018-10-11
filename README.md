@@ -11,37 +11,39 @@ This node-based import script can be used to import data from the latest GoodWe 
 - Node v8.9.0 or above
 - NPM v5.8.0 or above
 
-## Installation
+## Installation 
 
 - Clone repo or download from releases-page
 - `cd` into the downloaded/cloned folder
 - run `npm i`
 - Make `db`-folder writeable (easiest way; `chmod +w db/`)
 - Setup environment (see "Environment")
+- Transpile the code ; `npm run build`
+- check if building succeeded
+- link the cli-command; `npm link`
 
 ## Running
 
 Currently this tool runs from commandline, possibly from a cronjob. I have not looked into daemonizing it yet, it's on the backlog.
-Building does not work as of now, so you're stuck with using `npm run dev`
 
 _These examples run assuming you setup the environment correctly_
 
 _Get stations_:
 
 ``` 
-npm run dev -- --list-powerstations
+semsSync --list-powerstations
 ```
 
 _Print last output_:
 
 ``` 
-npm run dev -- --station-id [stationID] --get-last-output
+semsSync --station-id [stationID] --get-last-output
 ```
 
 _Sync_:
 
 ``` 
-npm run dev -- --station-id [stationID] --sync PVOutput 
+semsSync --station-id [stationID] --sync PVOutput 
 ```
 
 ## Environment
