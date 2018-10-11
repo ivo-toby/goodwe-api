@@ -36,7 +36,6 @@ class PVOutput extends AbstractTarget {
                 method: 'GET',
             });
             result = await result;
-            console.log(result.status);
             if (result.status === 200) {
                 resolve(result);
             } else {

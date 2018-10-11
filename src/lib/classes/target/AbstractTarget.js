@@ -9,7 +9,7 @@ class AbstractTarget {
     }
 
     validateSettings() {
-        const invalid = this.settings.filter((setting) => {
+        const invalid = this.settings.filter((setting) => { // eslint-disable-line
             if (!Config().hasKey(setting)) {
                 return setting;
             }
@@ -48,7 +48,6 @@ class AbstractTarget {
     get total() {
         return this.data.today_power;
     }
-
 }
 
 export default AbstractTarget;

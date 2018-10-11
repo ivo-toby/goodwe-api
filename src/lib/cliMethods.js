@@ -2,17 +2,9 @@ import Config from './classes/Config';
 import TargetFactory from './classes/TargetFactory';
 import PowerStation from './classes/PowerStation';
 import GoodWeError from './classes/GoodWeError';
+import GoodWeLogger from './classes/GoodWeLogger';
 
 async function syncTargets() {
-    /* order of business;
-    √ create factory instance
-    √ load modules
-    √ validate settings & initialize modules
-    - retrieve data and pass to modules
-    - sync data
-    - cleanup
-    */
-
     const stationId = Config().get('station-id');
     if (!stationId) {
         throw new GoodWeError({ message: 'no station id' });
@@ -34,9 +26,9 @@ async function syncTargets() {
 
 async function printPowerstationList() {
     const stationsList = await PowerStation.getPowerStations();
-    console.log('Found the following powerstations (name, location, powerstation-id):');
+    GoodWeLogger.log('Found the following powerstations (name, location, powerstation-id):');
     stationsList.forEach((station) => {
-        console.log(station.stationname, station.location, station.powerstation_id);
+        GoodWeLogger.log(station.stationname, station.location, station.powerstation_id);
     });
 }
 
@@ -52,7 +44,7 @@ async function printLastOutput(stationId) {
         lastOutput: output.pacs[output.pacs.length - 2].pac,
         dateLastOutput: output.pacs[output.pacs.length - 2].date,
     };
-    console.log(formattedOutput);
+    GoodWeLogger.log(formattedOutput);
 }
 
 export {

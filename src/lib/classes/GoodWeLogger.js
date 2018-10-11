@@ -2,7 +2,7 @@
 class GoodWeLogger {
     static log(...args) {
         // for now log to console
-        console.log(...args);
+        console.log(...args); // eslint-disable-line
     }
 }
 

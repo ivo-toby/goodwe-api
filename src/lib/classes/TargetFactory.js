@@ -1,3 +1,4 @@
+import GoodWeLogger from './GoodWeLogger';
 
 class TargetFactory {
     #modules = [];
@@ -9,18 +10,18 @@ class TargetFactory {
             return mod;
         });
         const mods = await Promise.all(objects);
-        this.targets = mods.map((module) => new module.default());
+        this.targets = mods.map(module => new module.default()); // eslint-disable-line
         this.validateTargets();
         return this.modules;
     }
 
     validateTargets() {
         try {
-            this.targets.map((module) => {
+            this.targets.map((module) => { // eslint-disable-line
                 module.validateSettings();
             });
         } catch (e) {
-            console.log(e);
+            GoodWeLogger.log(e);
             return false;
         }
         return true;
@@ -42,7 +43,7 @@ class TargetFactory {
     set powerData(data) {
         this.#data = data;
         this.#modules.forEach((module) => {
-            module.powerData = data;
+            module.powerData = data; // eslint-disable-line
         });
     }
 

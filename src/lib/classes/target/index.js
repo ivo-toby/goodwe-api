@@ -1,5 +1,5 @@
 import PVOutput from './PVOutput';
 
 export {
-    PVOutput,
+    PVOutput, // eslint-disable-line
 };
