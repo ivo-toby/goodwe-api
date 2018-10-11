@@ -83,6 +83,12 @@ Configuration options;
 
 # Changelog
 
+`v0.2.0` 
+ 
+ - Added CLI-command (semsSync)
+ - Fixed building with babel
+ - Fixed expired logins
+
 `v0.1.0` 
 
 First draft-release. Should be able to sync if you set a cronjob to execute every x minutes, but still very alpha!
