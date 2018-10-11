@@ -14,6 +14,9 @@
     "PVOutput",
     "SEMS"
   ],
+  "bin": {
+    "semsSync": "cli.js"
+  },
   "author": "Ivo Toby - ivo.toby@gmail.com",
   "license": "MIT",
   "devDependencies": {
