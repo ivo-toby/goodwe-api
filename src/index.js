@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import Config from './lib/classes/Config';
 import Auth from './lib/classes/Auth';
 import GoodWeError from './lib/classes/GoodWeError';
@@ -24,7 +25,7 @@ if (Config().get('get-last-output')) {
 
 if (Config().get('sync')) {
     syncTargets().then((result) => {
-        GoodWeLogger.log('Syncing succeeded', result);
+        GoodWeLogger.log(chalk.bgGreen.black.bold('Syncing succeeded'));
     }).catch((e) => {
         throw new GoodWeError(e);
     });

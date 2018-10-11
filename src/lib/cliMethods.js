@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import Config from './classes/Config';
 import TargetFactory from './classes/TargetFactory';
 import PowerStation from './classes/PowerStation';
@@ -26,9 +27,9 @@ async function syncTargets() {
 
 async function printPowerstationList() {
     const stationsList = await PowerStation.getPowerStations();
-    GoodWeLogger.log('Found the following powerstations (name, location, powerstation-id):');
+    GoodWeLogger.log(chalk.red.bold('Found the following powerstations (name, location, powerstation-id):'));
     stationsList.forEach((station) => {
-        GoodWeLogger.log(station.stationname, station.location, station.powerstation_id);
+        GoodWeLogger.log(chalk.green.bold(station.stationname, station.location, station.powerstation_id));
     });
 }
 
