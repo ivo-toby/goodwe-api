@@ -68,6 +68,7 @@ GOODWE_PASSWORD=<your goodwe-password>
 
 ```--dry-run``` uses mock data instead of real data and does not post to targets
 
+```--log-to-file [filename]``` write log to file instead of console.
 ## Targets
 
 This tool is written to allow syncing of GoodWe-API-data to multiple targets. Currently PVOutput is the only target which is supported. Possibly more to come in the future:)
