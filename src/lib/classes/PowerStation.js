@@ -1,9 +1,9 @@
 import Config from './Config';
-import { AuthenticatedGoodWePost } from './GoodWeFetch';
+import { GoodWePost } from './GoodWeFetch';
 
 class PowerStation {
     static async getPowerStations() {
-        const results = await AuthenticatedGoodWePost('PowerStationMonitor/QueryPowerStationMonitorForApp', {});
+        const results = await GoodWePost('PowerStationMonitor/QueryPowerStationMonitorForApp', {});
         return results;
     }
 
@@ -17,7 +17,7 @@ class PowerStation {
             id: stationId,
             date: dateObj.toISOString(),
         };
-        const results = await AuthenticatedGoodWePost('PowerStationMonitor/GetPowerStationPacByDayForApp', params);
+        const results = await GoodWePost('PowerStationMonitor/GetPowerStationPacByDayForApp', params);
         return results;
     }
 }
