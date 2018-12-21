@@ -51,12 +51,14 @@ These variables should be set from environment-variables or can be passed using 
 ```
 GOODWE_LOGIN_API=https://globalapi.sems.com.cn/api/v1/
 GOODWE_API_URI=https://euapi.sems.com.cn/api/
+GOODWE_USERNAME=[Goodwe username]
+GOODWE_PASSWORD=[Goodwe pass]
 GOODWE_API_VERION=v2.0.4
 GOODWE_CLIENT_TYPE=ios
-CACHE_ID=7c3c61277bd8b4aa5efd3a5c755e6db5
+CACHE_ID=[insert random GUID here]
 CACHE_FOLDER=./db
-GOODWE_USERNAME=<your goodwe-username>
-GOODWE_PASSWORD=<your goodwe-password>
+PVapiKey=[API Key From PVOutput.org]
+PVSystemId=[SystemID from PVOutput.org]
 ```
 
 ## CLI args
