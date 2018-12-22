@@ -24,7 +24,7 @@ This node-based import script can be used to import data from the latest GoodWe 
 
 ## Running
 
-Currently this tool runs from commandline, possibly from a cronjob. I have not looked into daemonizing it yet, it's on the backlog.
+Currently this tool runs from commandline, usually from a cronjob. I have not looked into daemonizing it yet, it's on the backlog.
 
 _These examples run assuming you setup the environment correctly_
 
@@ -84,6 +84,50 @@ Configuration options;
 
 ```--PVSystemId [systemId]``` the PVOUtput systemID
 
+
+## Cronjob
+
+1. Edit your crontab;
+
+``` 
+crontab -e 
+```
+
+2. Copy the contents of your env file to the top of the crontab
+3. Paste the following at the end of your crontab, _this will run the semsSync task every 5 minutes_
+
+```
+*/5 * * * *  /[Path to]node /[path to the GoodWe package]/dist/index.js --sync PVOutput --station-id [station-ID you get from running semsSync --list-powerstations] 2>&1 | while read line; do echo `/bin/date` "$line" >> /[path to you log-directory]/semsSync.log; done
+```
+
+### Example
+
+My Crontab looks like this _(I have NVM running, so node is probably in a different path from most stock setups)_:
+
+
+```
+GOODWE_LOGIN_API=https://globalapi.sems.com.cn/api/v1/
+GOODWE_API_URI=https://euapi.sems.com.cn/api/
+GOODWE_USERNAME= [xxxx]
+GOODWE_PASSWORD= [xxxx]
+GOODWE_API_VERION=v2.0.4
+GOODWE_CLIENT_TYPE=ios
+CACHE_ID=7c3c61277bd8b4aa5efd3a5c755e6db5
+CACHE_FOLDER=./db
+PVapiKey= [xxxx]
+PVSystemId= [xxx]
+
+*/5 * * * *  /root/.nvm/versions/node/v8.14.0/bin/node /root/goodwe-api/dist/index.js --sync PVOutput --station-id 5368e8a7-3966-4250-8c0d-0d90faad52eb 2>&1 | while read line; do echo `/bin/date` "$line" >> /var/log/semsSync.log; done
+
+```
+
+### View logs
+
+To monitor the log, you can use `tail`:
+
+```
+tail -F /var/log/semsSync.log
+```
 
 # Changelog
 
