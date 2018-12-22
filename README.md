@@ -1,8 +1,10 @@
-# GoodWe API (oct 2018)
+# GoodWe API Synchronisation utility
 
-_This is a work in progress_
+_This is a work in progress but has been stable and running for 2 months_
 
-This node-based import script can be used to import data from the latest GoodWe API and upload it to PVOutput.org
+This node-based import script can be used to import data from the latest GoodWe API and upload it to PVOutput.org.
+The previous API from Goodwe has been deprecated and was supposed to be taken down in October 2018, it's still up & running though (dec.2018). To keep my PV data synced to PVOutput.org I've written this small utility. For now it only supports PVOutput.org, but I will take a look into syncing with Domoticz as well.
+
 
 ## Prerequisites
 
