@@ -1,7 +1,5 @@
 # GoodWe API Synchronisation utility
 
-_This is a work in progress but has been stable and running for 2 months_
-
 This node-based import script can be used to import data from the latest GoodWe API and upload it to PVOutput.org.
 The previous API from Goodwe has been deprecated and was supposed to be taken down in October 2018, it's still up & running though (dec.2018). To keep my PV data synced to PVOutput.org I've written this small utility. For now it only supports PVOutput.org, but I will take a look into syncing with Domoticz as well.
 
@@ -110,14 +108,14 @@ My Crontab looks like this _(I have NVM running, so node is probably in a differ
 ```
 GOODWE_LOGIN_API=https://globalapi.sems.com.cn/api/v1/
 GOODWE_API_URI=https://euapi.sems.com.cn/api/
-GOODWE_USERNAME= [xxxx]
-GOODWE_PASSWORD= [xxxx]
+GOODWE_USERNAME=<your goodwe-username>
+GOODWE_PASSWORD=<your goodwe-password>
 GOODWE_API_VERION=v2.0.4
 GOODWE_CLIENT_TYPE=ios
-CACHE_ID=7c3c61277bd8b4aa5efd3a5c755e6db5
+CACHE_ID=[insert random GUID here]
 CACHE_FOLDER=./db
-PVapiKey= [xxxx]
-PVSystemId= [xxx]
+PVapiKey=[API Key From PVOutput.org]
+PVSystemId=[SystemID from PVOutput.org]
 
 */5 * * * *  /root/.nvm/versions/node/v8.14.0/bin/node /root/goodwe-api/dist/index.js --sync PVOutput --station-id 5368e8a7-3966-4250-8c0d-0d90faad52eb 2>&1 | while read line; do echo `/bin/date` "$line" >> /var/log/semsSync.log; done
 
@@ -132,6 +130,12 @@ tail -F /var/log/semsSync.log
 ```
 
 # Changelog
+
+`v0.3.2` 
+ 
+ - Update NPM Packages (security)
+ - PVOutput : Fix wrong month-prefix in API call
+
 
 `v0.3.0` 
  

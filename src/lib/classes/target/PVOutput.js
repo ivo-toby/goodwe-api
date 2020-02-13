@@ -14,12 +14,11 @@ class PVOutput extends AbstractTarget {
     }
 
     async sync() {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             const timestamp = new Date();
 
-            const date = `${timestamp.getFullYear()}${timestamp.getMonth() + 1}${timestamp.getDate()}`;
+            const date = `${timestamp.getFullYear()}${('0' + (timestamp.getMonth()+1)).slice(-2)}${timestamp.getDate()}`;
             const time = `${timestamp.getHours()}:${timestamp.getMinutes()}`;
-
             const solarWatt = this.latest;
             const solarWattHour = this.total * 1000;
 
