@@ -53,7 +53,7 @@
         "dotenv": "^8.2.0",
         "flat-cache": "^2.0.1",
         "log-to-file": "^2.0.2",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.1",
         "yargs": "^15.1.0"
     }
 }
